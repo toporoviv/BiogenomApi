@@ -5,7 +5,7 @@ namespace BiogenomApi.Domain.Entities;
 /// <summary>
 /// Витамин
 /// </summary>
-public abstract class Vitamin
+public class Vitamin
 {
     public int Id { get; init; }
     
