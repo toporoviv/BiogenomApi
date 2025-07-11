@@ -1,0 +1,15 @@
+﻿services:
+  postgres:
+    image: postgres
+    container_name: biogenom-db
+    environment:
+      POSTGRES_USER: biogenom_user
+      POSTGRES_PASSWORD: biogenom_password
+      POSTGRES_DB: biogenom_db
+    ports:
+      - "5444:5444"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
