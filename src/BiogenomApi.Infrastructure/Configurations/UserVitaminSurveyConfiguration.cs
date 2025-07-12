@@ -11,7 +11,8 @@ public class UserVitaminSurveyConfiguration : IEntityTypeConfiguration<UserVitam
         builder.HasKey(s => s.Id);
 
         builder.Property(s => s.SurveyAtUtc)
-            .IsRequired();
+            .IsRequired()
+            .HasColumnType("timestamp with time zone");
 
         builder.HasOne(s => s.User)
             .WithMany(u => u.VitaminSurveys)

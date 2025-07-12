@@ -9,6 +9,6 @@ public static class IoCExtensions
     public static IServiceCollection AddBiogenomInfrastructure(this IServiceCollection services)
     {
         return services
-            .AddTransient<IContextFactory<DataContext>, ContextFactory<DataContext>>();
+            .AddScoped<IContextFactory<DataContext>, ContextFactory<DataContext>>();
     }
 }

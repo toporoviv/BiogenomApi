@@ -1,4 +1,5 @@
-﻿using BiogenomApi.Services.Implementations;
+﻿using BiogenomApi.Services.Factories;
+using BiogenomApi.Services.Implementations;
 using BiogenomApi.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +9,8 @@ public static class IoCExtensions
 {
     public static IServiceCollection AddBiogenomServices(this IServiceCollection services)
     {
-        return services.AddScoped<IVitaminService, VitaminService>();
+        return services
+            .AddScoped<IVitaminService, VitaminService>()
+            .AddScoped<IRecommendationServiceFactory, RecommendationServiceFactory>();
     }
 }

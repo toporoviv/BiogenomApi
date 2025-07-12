@@ -1,5 +1,6 @@
 ﻿using BiogenomApi.Api.Extensions;
 using BiogenomApi.Services.Dtos;
+using BiogenomApi.Services.Exceptions;
 using BiogenomApi.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ public class PersonalReportController(IVitaminService vitaminService) : Controll
     {
         var result = await vitaminService
             .GetDailyIntakeVitaminsStatsAsync(new GetDailyIntakeVitaminDto(userId));
-
+            
         return Ok(result.AsResponse());
     }
 
@@ -27,7 +28,7 @@ public class PersonalReportController(IVitaminService vitaminService) : Controll
             await vitaminService.GetPersonalizedDietarySupplementsAsync(
                 new GetPersonalizedDietarySupplementsDto(userId));
 
-        return Ok(result.AsResponse());
+        return Ok(result.AsResponse());   
     }
 
     [HttpGet("get-personalized-dietary-supplements-recommendations")]
@@ -37,6 +38,6 @@ public class PersonalReportController(IVitaminService vitaminService) : Controll
             await vitaminService.GetPersonalizedDietarySupplementRecommendationsAsync(
                 new GetPersonalizedDietarySupplementsRecommendationsDto(userId));
 
-        return Ok(result.AsResponse());
+        return Ok(result.AsResponse()); 
     }
 }

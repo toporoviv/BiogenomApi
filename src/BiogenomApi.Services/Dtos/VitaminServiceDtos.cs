@@ -24,6 +24,9 @@ public readonly record struct PersonalizedDietarySupplementsDto(
 public readonly record struct GetPersonalizedDietarySupplementsRecommendationsDto(Identifier UserId);
 
 public readonly record struct PersonalizedDietarySupplementsRecommendationsDto(
+    MeasurementUnit MeasurementUnit,
     double CurrentIntake,
+    double LowerLimit,
+    double? UpperLimit = null,
     double? DietarySupplementIntake = null,
     double? FoodIntake = null);

@@ -18,6 +18,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         
         builder.Services.AddAuthorization();
+        builder.Services.AddSwaggerGen();
         builder.Services.AddOpenApi();
         builder.Services.AddBiogenomInfrastructure();
         builder.Services.AddBiogenomServices();
@@ -25,6 +26,17 @@ public class Program
 
         builder.Services.AddDbContext<DataContext>(options =>
             options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+        
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAny", policy =>
+            {
+                policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
+        });
+
         
         builder.Services
             .AddGraphQLServer()
@@ -38,6 +50,13 @@ public class Program
         
         var app = builder.Build();
         
+        using (var scope = app.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<DataContext>();
+            context.Database.Migrate();
+            DbInitializer.SeedData(context);
+        }
+        
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
@@ -48,6 +67,7 @@ public class Program
         app.UseMiddleware<ExceptionMiddleware>();
         
         app.UseHttpsRedirection();
+        app.UseCors("AllowAny");
 
         app.UseAuthorization();
         app.MapControllers();

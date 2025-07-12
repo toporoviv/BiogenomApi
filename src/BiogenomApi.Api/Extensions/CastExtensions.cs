@@ -54,7 +54,10 @@ internal static class CastExtensions
             {
                 CurrentIntake = item.CurrentIntake,
                 FoodIntake = item.FoodIntake,
-                DietarySupplementIntake = item.DietarySupplementIntake
+                DietarySupplementIntake = item.DietarySupplementIntake,
+                MeasurementUnit = item.MeasurementUnit,
+                UpperLimit = item.UpperLimit,
+                LowerLimit = item.LowerLimit
             });
         }
 

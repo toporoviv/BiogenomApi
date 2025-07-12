@@ -55,7 +55,10 @@ public class PersonalReportQuery
         {
             CurrentIntake = x.CurrentIntake,
             FoodIntake = x.FoodIntake,
-            DietarySupplementIntake = x.DietarySupplementIntake
+            DietarySupplementIntake = x.DietarySupplementIntake,
+            MeasurementUnit = x.MeasurementUnit,
+            UpperLimit = x.UpperLimit,
+            LowerLimit = x.LowerLimit
         });
     }
 }

@@ -56,4 +56,11 @@ internal static class VitaminExtensions
         
         return nutrientAmount.Value * Math.Pow(10, power);
     }
+    
+    public static VitaminDietarySupplement? GetFirstVitaminDietarySupplementForVitaminDeficiency(this Vitamin vitamin)
+    {
+        return vitamin.RelatedSupplements
+            .FirstOrDefault(rs =>
+                rs.Amount.Unit == vitamin.MeasurementUnit);
+    }
 }
